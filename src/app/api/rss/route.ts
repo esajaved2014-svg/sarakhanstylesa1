@@ -1,21 +1,20 @@
 import { getPosts } from "@/utils/utils";
-import { baseURL, blog, person } from "@/resources";
+import { baseURL, blog, person, routes } from "@/resources";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const posts = getPosts(["src", "app", "blog", "posts"]);
+  const posts =
+    routes["/blog"] === true ? getPosts(["src", "app", "blog", "posts"]) : [];
 
-  // Sort posts by date (newest first)
   const sortedPosts = posts.sort((a, b) => {
     return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
   });
 
-  // Generate RSS XML
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${blog.title}</title>
-    <link>${baseURL}/blog</link>
+    <link>${baseURL}</link>
     <description>${blog.description}</description>
     <language>en</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
@@ -25,7 +24,7 @@ export async function GET() {
     <image>
       <url>${baseURL}${person.avatar || "/images/avatar.jpg"}</url>
       <title>${blog.title}</title>
-      <link>${baseURL}/blog</link>
+      <link>${baseURL}</link>
     </image>
     ${sortedPosts
       .map(
@@ -45,7 +44,6 @@ export async function GET() {
   </channel>
 </rss>`;
 
-  // Return the RSS XML with the appropriate content type
   return new NextResponse(rssXml, {
     headers: {
       "Content-Type": "application/xml",

@@ -1,0 +1,48 @@
+/* Semi-glass primary CTA: frosted surface + soft pink/magenta glow (keeps Once UI radius/pill). */
+.galleryGlass {
+  isolation: isolate;
+  background: color-mix(in srgb, var(--function-brand-600) 22%, transparent) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--function-brand-500) 42%, transparent) !important;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--function-brand-400) 18%, transparent),
+    0 4px 20px color-mix(in srgb, var(--function-brand-600) 32%, transparent),
+    0 0 40px color-mix(in srgb, var(--function-brand-500) 22%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--static-white) 12%, transparent);
+  color: var(--static-white) !important;
+  transition:
+    box-shadow 0.28s ease,
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+.galleryGlass:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--function-brand-600) 32%, transparent) !important;
+  border-color: color-mix(in srgb, var(--function-brand-400) 55%, transparent) !important;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--function-brand-400) 28%, transparent),
+    0 6px 28px color-mix(in srgb, var(--function-brand-600) 42%, transparent),
+    0 0 56px color-mix(in srgb, var(--function-brand-500) 35%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--static-white) 18%, transparent);
+  transform: translateY(-1px);
+}
+
+.galleryGlass:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Arrow / label inherit light foreground */
+.galleryGlass :global(.font-label) {
+  color: inherit !important;
+}
+
+:global(html[data-theme="light"]) .galleryGlass {
+  background: color-mix(in srgb, var(--function-brand-600) 38%, transparent) !important;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--function-brand-500) 28%, transparent),
+    0 4px 24px color-mix(in srgb, var(--function-brand-600) 28%, transparent),
+    0 0 44px color-mix(in srgb, var(--function-brand-500) 18%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--static-white) 35%, transparent);
+}

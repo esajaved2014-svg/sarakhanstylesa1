@@ -1,0 +1,39 @@
+.mapWrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-l, 12px);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px var(--neutral-alpha-medium),
+    0 12px 40px -12px color-mix(in srgb, var(--brand-background-strong) 35%, transparent);
+}
+
+.mapFrame {
+  display: block;
+  width: 100%;
+  height: 280px;
+  border: 0;
+}
+
+@media (min-width: 768px) {
+  .mapFrame {
+    height: 340px;
+  }
+}
+
+.heroGlow {
+  background: radial-gradient(
+    ellipse 80% 60% at 50% -20%,
+    color-mix(in srgb, var(--brand-background-strong) 18%, transparent),
+    transparent 72%
+  );
+}
+
+/* Rose neutral made the whole UI pale; gray neutral fixes that. Keep this glow subtle in light mode. */
+:global(html[data-theme="light"]) .heroGlow {
+  background: radial-gradient(
+    ellipse 90% 50% at 50% -30%,
+    color-mix(in srgb, var(--brand-background-strong) 7%, transparent),
+    transparent 78%
+  );
+}
