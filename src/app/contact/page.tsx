@@ -154,7 +154,7 @@ export default function ContactPage() {
               />
             </div>
             <Row horizontal="center">
-              <SmartLink href={MONTREAL_MAP_LINK} size="s">
+              <SmartLink href={MONTREAL_MAP_LINK}>
                 Open in Google Maps
               </SmartLink>
             </Row>
